@@ -5,6 +5,7 @@ namespace CoreServer.ViewModel.Common
 {
     public class VmMain : ViewModelBase
     {
+        public AsyncRelayCommand CmdWaiting { get; set; }
         public AsyncRelayCommand CmdInfo { get; set; }
         public AsyncRelayCommand CmdSuccess { get; set; }
         public AsyncRelayCommand CmdWarning { get; set; }
@@ -15,6 +16,7 @@ namespace CoreServer.ViewModel.Common
 
         public VmMain()
         {
+            CmdWaiting = new(() => VmMessage.ShowWaiting("等待", "等待完成。"));
             CmdInfo = new(() => VmMessage.ShowInfo("提示", "查看提示。"));
             CmdSuccess = new(() => VmMessage.ShowSuccess("完成", "操作完成。"));
             CmdWarning = new(() => VmMessage.ShowWarning("警告", "风险警告。"));

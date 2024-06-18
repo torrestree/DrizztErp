@@ -63,18 +63,18 @@ namespace Core.ViewModel.Common
             set => SetProperty(ref isCmdCancelVisible, value);
         }
 
-        private bool isWaitingVisible;
-        public bool IsWaitingVisible
-        {
-            get => isWaitingVisible;
-            set => SetProperty(ref isWaitingVisible, value);
-        }
-
         private bool isProgressVisible;
         public bool IsProgressVisible
         {
             get => isProgressVisible;
             set => SetProperty(ref isProgressVisible, value);
+        }
+
+        private bool isIndeterminate;
+        public bool IsIndeterminate
+        {
+            get => isIndeterminate;
+            set => SetProperty(ref isIndeterminate, value);
         }
 
         private float progressMax;
@@ -103,16 +103,19 @@ namespace Core.ViewModel.Common
                 IsCmdNoVisible = false;
                 IsCmdOkVisible = false;
                 IsCmdCancelVisible = false;
-                IsWaitingVisible = false;
                 IsProgressVisible = false;
 
                 switch (messageType)
                 {
                     case MessageTypes.Waiting:
-                        IsWaitingVisible = true;
+                        IsProgressVisible = true;
+                        IsIndeterminate = true;
+                        IsCmdCancelVisible = true;
                         break;
                     case MessageTypes.Progress:
                         IsProgressVisible = true;
+                        IsIndeterminate = false;
+                        IsCmdCancelVisible = true;
                         break;
                     case MessageTypes.OkCancel:
                         IsCmdOkVisible = true;

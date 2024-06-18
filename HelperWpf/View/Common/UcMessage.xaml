@@ -30,7 +30,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
 
             <Border Style="{Binding Path=MessageType, Converter={StaticResource MessageType2TitleStyleConverter}, ConverterParameter={StaticResource TitleStyles}}" Grid.Row="0">
@@ -39,7 +40,9 @@
 
             <TextBox Text="{Binding Path=Content}" d:Text="消息内容" VerticalContentAlignment="Top" TextWrapping="Wrap" Margin="0, 10" Padding="10" VerticalScrollBarVisibility="Auto" Grid.Row="1"/>
 
-            <hc:ButtonGroup HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="2">
+            <ProgressBar IsIndeterminate="{Binding Path=IsIndeterminate}" Maximum="{Binding Path=ProgressMax}" Value="{Binding Path=Progress}" Grid.Row="2" Visibility="{Binding Path=IsProgressVisible, Converter={StaticResource Boolean2VisibilityConverter}}"/>
+
+            <hc:ButtonGroup HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="3">
                 <Button Content="是" Command="{Binding Path=CmdYes}" Width="100" Visibility="{Binding Path=IsCmdYesVisible, Converter={StaticResource Boolean2VisibilityConverter}}"/>
                 <Button Content="否" Command="{Binding Path=CmdNo}" Width="100" Visibility="{Binding Path=IsCmdNoVisible, Converter={StaticResource Boolean2VisibilityConverter}}"/>
                 <Button Content="确定" Command="{Binding Path=CmdOk}" Width="100" Visibility="{Binding Path=IsCmdOkVisible, Converter={StaticResource Boolean2VisibilityConverter}}"/>
