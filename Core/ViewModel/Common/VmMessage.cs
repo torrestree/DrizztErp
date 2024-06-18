@@ -27,20 +27,6 @@ namespace Core.ViewModel.Common
             set => SetProperty(ref content, value);
         }
 
-        private Exception ex = null!;
-        public Exception Ex
-        {
-            get => ex;
-            set => SetProperty(ref ex, value);
-        }
-
-        private bool isExVisible;
-        public bool IsExVisible
-        {
-            get => isExVisible;
-            set => SetProperty(ref isExVisible, value);
-        }
-
         public RelayCommand CmdYes { get; set; }
 
         private bool isCmdYesVisible;
@@ -57,6 +43,15 @@ namespace Core.ViewModel.Common
         {
             get => isCmdNoVisible;
             set => SetProperty(ref isCmdNoVisible, value);
+        }
+
+        public RelayCommand CmdOk { get; set; }
+
+        private bool isCmdOkVisible;
+        public bool IsCmdOkVisible
+        {
+            get => isCmdOkVisible;
+            set => SetProperty(ref isCmdOkVisible, value);
         }
 
         public RelayCommand CmdCancel { get; set; }
@@ -103,9 +98,10 @@ namespace Core.ViewModel.Common
             set
             {
                 SetProperty(ref messageType, value);
-                IsExVisible = false;
+
                 IsCmdYesVisible = false;
                 IsCmdNoVisible = false;
+                IsCmdOkVisible = false;
                 IsCmdCancelVisible = false;
                 IsWaitingVisible = false;
                 IsProgressVisible = false;
@@ -118,13 +114,9 @@ namespace Core.ViewModel.Common
                     case MessageTypes.Progress:
                         IsProgressVisible = true;
                         break;
-                    case MessageTypes.Error:
-                        IsExVisible = true;
-                        IsCmdYesVisible = true;
-                        break;
-                    case MessageTypes.YesNo:
-                        IsCmdYesVisible = true;
-                        IsCmdNoVisible = true;
+                    case MessageTypes.OkCancel:
+                        IsCmdOkVisible = true;
+                        IsCmdCancelVisible = true;
                         break;
                     case MessageTypes.YesNoCancel:
                         IsCmdYesVisible = true;
@@ -132,7 +124,7 @@ namespace Core.ViewModel.Common
                         IsCmdCancelVisible = true;
                         break;
                     default:
-                        IsCmdYesVisible = true;
+                        IsCmdOkVisible = true;
                         break;
                 }
             }
@@ -144,6 +136,7 @@ namespace Core.ViewModel.Common
         {
             CmdYes = new(() => MessageAwaiter.Continue(true));
             CmdNo = new(() => MessageAwaiter.Continue(false));
+            CmdOk = new(() => MessageAwaiter.Continue(true));
             CmdCancel = new(() => MessageAwaiter.Continue(null));
         }
 
@@ -184,9 +177,9 @@ namespace Core.ViewModel.Common
             MessageType = MessageTypes.Error;
             await Show(title, content);
         }
-        public async Task<bool> ShowYesNo(string title, string content)
+        public async Task<bool> ShowOkCancel(string title, string content)
         {
-            MessageType = MessageTypes.YesNo;
+            MessageType = MessageTypes.OkCancel;
             return await Show(title, content) == true;
         }
         public async Task<bool?> ShowYesNoCancel(string title, string content)
@@ -216,29 +209,29 @@ namespace Core.ViewModel.Common
             /// </summary>
             Progress,
             /// <summary>
-            /// yes
+            /// ok
             /// </summary>
             Info,
             /// <summary>
-            /// yes
+            /// ok
             /// </summary>
             Success,
             /// <summary>
-            /// yes
+            /// ok
             /// </summary>
             Warning,
             /// <summary>
-            /// yes
+            /// ok
             /// </summary>
             Failure,
             /// <summary>
-            /// yes, ex
+            /// ok, ex
             /// </summary>
             Error,
             /// <summary>
-            /// yes, no
+            /// ok, cancel
             /// </summary>
-            YesNo,
+            OkCancel,
             /// <summary>
             /// yes, no, cancel
             /// </summary>

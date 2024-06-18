@@ -41,8 +41,9 @@
 
             <hc:ButtonGroup HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="2">
                 <Button Content="是" Command="{Binding Path=CmdYes}" Width="100" Visibility="{Binding Path=IsCmdYesVisible, Converter={StaticResource Boolean2VisibilityConverter}}"/>
-                <Button Content="否" Command="{Binding Path=CmdNo}" Visibility="{Binding Path=IsCmdNoVisible, Converter={StaticResource Boolean2VisibilityConverter}}"/>
-                <Button Content="取消" Command="{Binding Path=CmdCancel}" Visibility="{Binding Path=IsCmdCancelVisible, Converter={StaticResource Boolean2VisibilityConverter}}"/>
+                <Button Content="否" Command="{Binding Path=CmdNo}" Width="100" Visibility="{Binding Path=IsCmdNoVisible, Converter={StaticResource Boolean2VisibilityConverter}}"/>
+                <Button Content="确定" Command="{Binding Path=CmdOk}" Width="100" Visibility="{Binding Path=IsCmdOkVisible, Converter={StaticResource Boolean2VisibilityConverter}}"/>
+                <Button Content="取消" Command="{Binding Path=CmdCancel}" Width="100" Visibility="{Binding Path=IsCmdCancelVisible, Converter={StaticResource Boolean2VisibilityConverter}}"/>
             </hc:ButtonGroup>
         </Grid>
     </Border>

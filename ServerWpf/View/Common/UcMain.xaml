@@ -16,7 +16,7 @@
             <Button Content="警告" Command="{Binding Path=CmdWarning}"/>
             <Button Content="失败" Command="{Binding Path=CmdFailure}"/>
             <Button Content="错误" Command="{Binding Path=CmdError}"/>
-            <Button Content="确认1" Command="{Binding Path=CmdYesNo}"/>
+            <Button Content="确认1" Command="{Binding Path=CmdOkCancel}"/>
             <Button Content="确认2" Command="{Binding Path=CmdYesNoCancel}"/>
         </hc:ButtonGroup>
         <h:UcMessage DataContext="{Binding Path=VmMessage}"/>

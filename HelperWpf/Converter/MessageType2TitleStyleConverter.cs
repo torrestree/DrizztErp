@@ -19,7 +19,7 @@ namespace HelperWpf.Converter
                         VmMessage.MessageTypes.Warning => styles.ElementAt(2),
                         VmMessage.MessageTypes.Failure => styles.ElementAt(3),
                         VmMessage.MessageTypes.Error => styles.ElementAt(3),
-                        VmMessage.MessageTypes.YesNo => styles.ElementAt(4),
+                        VmMessage.MessageTypes.OkCancel => styles.ElementAt(4),
                         VmMessage.MessageTypes.YesNoCancel => styles.ElementAt(4),
                         _ => styles.ElementAt(0),
                     };
